@@ -16,7 +16,8 @@ export default apiInitializer("1.14.0", (api) => {
       console.log('code not found in elem', elem);
       return
     }
-    const flowData = code.textContent;
+    const flowData = JSON.parse(code.textContent);
+    console.log('flowData', flowData);
     const renderer = new FlowRenderer()
     const container = document.createElement('div');
     container.classList.add('flow-renderer-container');
