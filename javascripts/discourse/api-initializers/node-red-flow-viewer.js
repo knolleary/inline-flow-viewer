@@ -17,9 +17,9 @@ export default apiInitializer("1.14.0", (api) => {
       return
     }
     const flowData = JSON.parse(code.textContent);
-    console.log('flowData', flowData);
     const renderer = new FlowRenderer()
     const container = document.createElement('div');
+    container.style.height = '400px'
     container.classList.add('flow-renderer-container');
     elem.replaceWith(container)
     renderer.renderFlows(flowData, { container })
