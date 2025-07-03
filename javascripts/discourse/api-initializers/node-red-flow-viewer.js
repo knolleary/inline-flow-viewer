@@ -20,15 +20,19 @@ export default apiInitializer("1.14.0", (api) => {
     try {
       flowData = JSON.parse(code.textContent);
     } catch (err) {
-      // invalid json - bail out
+      // invalid json - bail out quietly
       return
     }
     const renderer = new FlowRenderer()
     const container = document.createElement('div');
     container.style.height = '400px'
     container.classList.add('flow-renderer-container');
-    elem.replaceWith(container)
-    renderer.renderFlows(flowData, { container })
+    try {
+      renderer.renderFlows(flowData, { container })
+      elem.replaceWith(container)
+    } catch (err) {
+      console.log('error rendering flows', err);
+    }
   }
   
   api.decorateCookedElement((post) => {
