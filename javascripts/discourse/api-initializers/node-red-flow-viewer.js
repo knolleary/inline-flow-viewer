@@ -37,4 +37,16 @@ export default apiInitializer("1.14.0", (api) => {
       console.error(e);
     }
   }, {id: 'decorate-flow-viewer'});
+
+  api.addComposerToolbarPopupMenuOption({
+    icon: "diagram-project",
+    label: 'Add Flow JSON',
+    action: (toolbarEvent) => {
+      toolbarEvent.applySurround(
+        "\n```flows\n",
+        "\n```\n"
+      );
+    },
+  });
+
 });
