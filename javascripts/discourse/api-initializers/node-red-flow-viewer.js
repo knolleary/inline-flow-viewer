@@ -49,7 +49,8 @@ export default apiInitializer("1.14.0", (api) => {
     action: (toolbarEvent) => {
       toolbarEvent.applySurround(
         "\n```flows\n",
-        "\n```\n"
+        "\n```\n",
+        ''
       );
     },
   });
