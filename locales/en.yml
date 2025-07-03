@@ -1,0 +1,5 @@
+en:
+  theme_metadata:
+    description: ""
+
+  insert_flow_renderer: "Node-RED Flow"

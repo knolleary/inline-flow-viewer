@@ -16,14 +16,19 @@ export default apiInitializer("1.14.0", (api) => {
       console.log('code not found in elem', elem);
       return
     }
-    const flowData = JSON.parse(code.textContent);
+    let flowData = []
+    try {
+      flowData = JSON.parse(code.textContent);
+    } catch (err) {
+      // invalid json - bail out
+      return
+    }
     const renderer = new FlowRenderer()
     const container = document.createElement('div');
     container.style.height = '400px'
     container.classList.add('flow-renderer-container');
     elem.replaceWith(container)
     renderer.renderFlows(flowData, { container })
-   
   }
   
   api.decorateCookedElement((post) => {
@@ -38,18 +43,15 @@ export default apiInitializer("1.14.0", (api) => {
     }
   }, {id: 'decorate-flow-viewer'});
 
-  api.onToolbarCreate(toolbar => {
-      toolbar.addButton({
-        id: "add-flow-json",
-        icon: "diagram-project",
-        title: 'Add Flow JSON',
-        action: (toolbarEvent) => {
-          toolbarEvent.applySurround(
-            "\n```flows\n",
-            "\n```\n"
-          );
-        }
-      })
+  api.addComposerToolbarPopupMenuOption({
+    icon: "diagram-project",
+    label: themePrefix('insert_flow_renderer'),
+    action: (toolbarEvent) => {
+      toolbarEvent.applySurround(
+        "\n```flows\n",
+        "\n```\n"
+      );
+    },
   });
 
 });
