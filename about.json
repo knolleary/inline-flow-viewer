@@ -4,7 +4,7 @@
   "about_url": "https://github.com/knolleary/inline-flow-viewer",
   "license_url": "https://github.com/knolleary/inline-flow-viewer/blob/main/LICENSE",
   "authors": "@knolleary",
-  "theme_version": "1.0.2",
+  "theme_version": "1.0.3",
   "assets": {
     "flow_renderer": "assets/flow-renderer-0.4.1.min.js"
   }
