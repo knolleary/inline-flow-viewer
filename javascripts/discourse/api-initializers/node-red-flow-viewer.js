@@ -38,15 +38,18 @@ export default apiInitializer("1.14.0", (api) => {
     }
   }, {id: 'decorate-flow-viewer'});
 
-  api.addComposerToolbarPopupMenuOption({
-    icon: "diagram-project",
-    label: 'Add Flow JSON',
-    action: (toolbarEvent) => {
-      toolbarEvent.applySurround(
-        "\n```flows\n",
-        "\n```\n"
-      );
-    },
+  api.onToolbarCreate(toolbar => {
+      toolbar.addButton({
+        id: "add-flow-json",
+        icon: "diagram-project",
+        title: 'Add Flow JSON',
+        action: (toolbarEvent) => {
+          toolbarEvent.applySurround(
+            "\n```flows\n",
+            "\n```\n"
+          );
+        }
+      })
   });
 
 });
