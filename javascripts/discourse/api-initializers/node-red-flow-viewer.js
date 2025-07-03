@@ -6,7 +6,7 @@ export default apiInitializer("1.14.0", (api) => {
   // await loadScript(settings.theme_uploads_local.flow_renderer)
   // console.log('loading flow viewer - done');
   
-  const renderFlows = async (element) => {
+  const renderFlows = async (elem) => {
     if (!window.FlowRenderer) {
       await loadScript(settings.theme_uploads_local.flow_renderer)
     }
@@ -20,7 +20,7 @@ export default apiInitializer("1.14.0", (api) => {
     const renderer = new FlowRenderer()
     const container = document.createElement('div');
     container.classList.add('flow-renderer-container');
-    element.replaceWith(container)
+    elem.replaceWith(container)
     renderer.renderFlows(flowData, { container })
    
   }
