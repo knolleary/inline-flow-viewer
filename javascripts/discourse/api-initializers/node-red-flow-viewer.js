@@ -42,6 +42,9 @@ export default apiInitializer("1.14.0", (api) => {
       console.error(e);
     }
   }, {id: 'decorate-flow-viewer'});
+  
+  // this is a hack learnt from the mermaid plugin
+  window.I18n.translations[window.I18n.locale].js.composer.default_nr_flow = '[]'
 
   api.addComposerToolbarPopupMenuOption({
     icon: "diagram-project",
@@ -50,7 +53,7 @@ export default apiInitializer("1.14.0", (api) => {
       toolbarEvent.applySurround(
         "\n```flows\n",
         "\n```\n",
-        ''
+        'default_nr_flow'
       );
     },
   });
