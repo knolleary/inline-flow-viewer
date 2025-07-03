@@ -27,11 +27,12 @@ export default apiInitializer("1.14.0", (api) => {
     const container = document.createElement('div');
     container.style.height = '400px'
     container.classList.add('flow-renderer-container');
+    elem.replaceWith(container)
     try {
       renderer.renderFlows(flowData, { container })
-      elem.replaceWith(container)
     } catch (err) {
       console.log('error rendering flows', err);
+      container.replaceWith(elem)
     }
   }
   
