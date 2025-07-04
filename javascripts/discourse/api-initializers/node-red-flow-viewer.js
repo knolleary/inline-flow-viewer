@@ -2,10 +2,6 @@ import loadScript from "discourse/lib/load-script"
 import { apiInitializer } from "discourse/lib/api";
 
 export default apiInitializer("1.14.0", (api) => {
-  // console.log('loading flow viewer');
-  // await loadScript(settings.theme_uploads_local.flow_renderer)
-  // console.log('loading flow viewer - done');
-  
   const renderFlows = async (elem) => {
     if (!window.FlowRenderer) {
       await loadScript(settings.theme_uploads_local.flow_renderer)
@@ -23,23 +19,24 @@ export default apiInitializer("1.14.0", (api) => {
       // invalid json - bail out quietly
       return
     }
-    const renderer = new FlowRenderer()
-    const container = document.createElement('div');
-    container.style.height = '400px'
-    container.classList.add('flow-renderer-container');
-    elem.replaceWith(container)
-    try {
-      renderer.renderFlows(flowData, { container })
-    } catch (err) {
-      console.log('error rendering flows', err);
-      container.replaceWith(elem)
-    }
+    setTimeout(() => {
+      const renderer = new FlowRenderer()
+      const container = document.createElement('div');
+      container.style.height = '400px'
+      container.classList.add('flow-renderer-container');
+      elem.replaceWith(container)
+      try {
+        renderer.renderFlows(flowData, { container })
+      } catch (err) {
+        console.log('error rendering flows', err);
+        container.replaceWith(elem)
+      }
+    }, 500)
   }
   
   api.decorateCookedElement((post) => {
     try {
       const elems = post.querySelectorAll('pre[data-code-wrap=flows]:not(.flows-decorator)');
-      console.log(elems)
       elems.forEach(elem => {
         renderFlows(elem)
       });
