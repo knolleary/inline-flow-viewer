@@ -31,7 +31,7 @@ export default apiInitializer("1.14.0", (api) => {
         console.log('error rendering flows', err);
         container.replaceWith(elem)
       }
-    }, 500)
+    }, 100)
   }
   
   api.decorateCookedElement((post) => {
